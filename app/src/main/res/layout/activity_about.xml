@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    tools:context="com.example.lagerimage_test.ui.AboutActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@color/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        app:contentInsetStart="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:popupTheme="@style/AppTheme.PopupOverlay"
+        app:theme="@style/AppTheme.PopupOverlay"
+        app:titleTextColor="@color/white">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:singleLine="true"
+            android:text="@string/about"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="22sp" />
+    </android.support.v7.widget.Toolbar>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/backgroundColor">
+
+
+        <ImageView
+            android:id="@+id/iv_logo"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="100dp"
+            android:src="@mipmap/ic_launcher" />
+
+
+        <TextView
+            android:id="@+id/tv_app_name"
+            style="@style/AppTheme.Label"
+            android:layout_below="@+id/iv_logo"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/padding_common_d"
+            android:text="@string/app_name2"
+            android:textColor="@color/color_black"
+            android:textSize="@dimen/textSize_title" />
+
+        <TextView
+            android:id="@+id/tv_version_name"
+            style="@style/AppTheme.Label"
+            android:layout_below="@+id/tv_app_name"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/padding_common_d"
+            tools:text="v1.0.0" />
+
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/tv_version_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:background="@color/color_title_bg"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/relayout_gitHub"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/about"
+                    style="@style/AppTheme.Label"
+                    android:layout_centerVertical="true"
+                    android:gravity="center"
+                    android:padding="@dimen/padding_common_h"
+                    android:text="NA"
+                    android:textColor="@color/color_black" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:text="xxx"
+                    android:textColor="@color/color_gray"
+                    android:visibility="gone" />
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/tv_not_use_commercial"
+            android:gravity="center"
+            android:text="@string/copy_right_notice"
+            android:textColor="@color/color_gray"
+            android:textSize="@dimen/textSize_small"
+
+            />
+
+        <TextView
+            android:id="@+id/tv_not_use_commercial"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="50dp"
+            android:layout_marginTop="@dimen/padding_common_d"
+            android:gravity="center"
+            android:text="@string/not_use_commercial"
+            android:textColor="@color/color_gray"
+            android:textSize="@dimen/textSize_small"
+
+            />
+
+        <TextView
+            android:id="@+id/tv_since"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="20dp"
+            android:gravity="center"
+            android:text="@string/since"
+            android:textColor="@color/color_gray"
+            android:textSize="@dimen/textSize_small_10" />
+
+
+    </RelativeLayout>
+</LinearLayout>

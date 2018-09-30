@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">LagerImage</string>
+    <string name="title_activity_list">ListActivity</string>
+    <string name="title_activity_list_imgae">ListImgaeActivity</string>
+    <string name="title_activity_line_images">LineImagesActivity</string>
+    <string name="app_name2">云航测</string>
+    <string name="hint_dialog">提示</string>
+    <string name="about">关于</string>
+    <string name="support">技术支持</string>
+    <string name="app_update">在线升级</string>
+    <string name="exist">退&#160;出</string>
+    <string name="unregister">注&#160;销</string>
+    <string name="yes">是</string>
+    <string name="no">否</string>
+    <string name="last_version_hint">已是最新版本不需要更新</string>
+    <string name="version_loading_fail">版本获取失败请重试</string>
+    <string name="cancel_update">更新取消</string>
+    <string name="new_version">新版本</string>
+    <string name="version_loading_version">版本信息获取中...</string>
+    <string name="are_you_sure">你确定？</string>
+    <string name="unregister_exist">你确定注销本次授权，并退出程序</string>
+    <string name="exist_app">你是否要退出程序</string>
+
+    <string-array name="cmos">
+        <item>晓 SPARK</item>
+        <item>御</item>
+        <item>精灵4</item>
+        <item>Z30</item>
+        <item>X7/X5s</item>
+    </string-array>
+    <string name="copy_right_notice">本程序归云航测版权所有</string>
+    <string name="not_use_commercial">未经受权不得使用</string>
+    <string name="since">copyright ©2018 云航测</string>
+    <string name="gitHub">item context</string>
+    <string name="crop_res">裁剪结果</string>
+    <string name="loading">数据加载中...</string>
+</resources>

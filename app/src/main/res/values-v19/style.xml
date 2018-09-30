@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+// values-v19。v19 开始有 android:windowTranslucentStatus 这个属性
+<style name="AppTheme1" parent="Theme.AppCompat.Light.NoActionBar">
+    <item name="android:windowTranslucentStatus">false</item>
+    <item name="android:windowTranslucentNavigation">true</item>
+</style>
+
+</resources>
