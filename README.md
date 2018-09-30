@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # LargeImage
 Android 加载大图  可以高清显示10000*10000像素的图片  
 可以滑动，放大缩小具有PhotoView的效果  
@@ -239,3 +240,6 @@ License
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and
     limitations under the License.
+=======
+# yunhangce-app
+>>>>>>> 9d4c7ae7fa7acb1c3137f94e40eac3fcef6c9583
