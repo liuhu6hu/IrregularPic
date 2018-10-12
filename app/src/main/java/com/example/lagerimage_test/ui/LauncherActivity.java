@@ -54,6 +54,7 @@ public class LauncherActivity extends AppCompatActivity {
     private DownloadBuilder builder;
     private boolean cancelCheckVersion;
     private MyCustomVersionDialogListener dialog;
+    private boolean isRunning =true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -136,6 +137,9 @@ public class LauncherActivity extends AppCompatActivity {
                 .postDelayed(new Runnable() {
                     @Override
                     public void run() {
+                        if(!isRunning){
+                            return;
+                        }
                         if (LicenseUtil.licenseOk()) {
                             waitOk = true;
                             startMainActivity();
@@ -231,6 +235,7 @@ public class LauncherActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
+        isRunning=false;
         LicenseUtil.dismissDialog();
         super.onDestroy();
     }
