@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:fitsSystemWindows="true"
-    tools:context="com.example.lagerimage_test.ui.RegisterLicenseActivity">
+    tools:context="com.product.yunhangce.ui.RegisterLicenseActivity">
 
     <TextView
         style="@android:style/TextAppearance.StatusBar.Title"
