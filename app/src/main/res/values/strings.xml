@@ -36,4 +36,6 @@
     <string name="gitHub">item context</string>
     <string name="crop_res">裁剪结果</string>
     <string name="loading">数据加载中...</string>
+    <string name="navigation_drawer_open">open</string>
+    <string name="navigation_drawer_close">close</string>
 </resources>

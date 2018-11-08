@@ -158,37 +158,38 @@ public class RegisterLicenseActivity extends AppCompatActivity {
         if (LicenseUtil.licenseOk()) {
             String deviceId = SpUtils.getInstance().getString(LicenseConst.KEY_DEVICE);
             String license = SpUtils.getInstance().getString(LicenseConst.KEY_LICENSE);
-            RetrofitUtil.getInstance().info(deviceId, license, new Callback<CommonResponse>() {
-                @Override
-                public void onResponse(Call<CommonResponse> call, retrofit2.Response<CommonResponse> response) {
-                    proDialog.dismiss();
-                    if (response.isSuccessful()) {
-                        if (response.body().getCode() == 200) {
-                            MyApplication.setCommonDate(response.body().getData());
-                            startActivity(new Intent(RegisterLicenseActivity.this, Main2Activity.class));
-                            finish();
-                        } else {
-
-                            LicenseUtil.showLicenseDialogActivity(RegisterLicenseActivity.this, response.body().getMessage());
-                        }
-                    } else {
-                        LicenseUtil.showSimpleLicenseDialog(RegisterLicenseActivity.this);
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<CommonResponse> call, Throwable t) {
-                    if(proDialog!=null&&proDialog.isShowing()){
-                        proDialog.dismiss();
-                    }
-                    LicenseUtil.showSimpleDialog(RegisterLicenseActivity.this, "初始化数据失败,请重新打开程序", new SweetAlertDialog.OnSweetClickListener() {
+            RetrofitUtil
+                    .getInstance()
+                    .info(deviceId, license, new Callback<CommonResponse>() {
                         @Override
-                        public void onClick(SweetAlertDialog sweetAlertDialog) {
-                            finish();
+                        public void onResponse(Call<CommonResponse> call, retrofit2.Response<CommonResponse> response) {
+                            proDialog.dismiss();
+                            if (response.isSuccessful()) {
+                                if (response.body().getCode() == 200) {
+                                    MyApplication.setCommonDate(response.body().getData());
+                                    startActivity(new Intent(RegisterLicenseActivity.this, Main2Activity.class));
+                                    finish();
+                                } else {
+                                    LicenseUtil.showLicenseDialogActivity(RegisterLicenseActivity.this, response.body().getMessage());
+                                }
+                            } else {
+                                LicenseUtil.showSimpleLicenseDialog(RegisterLicenseActivity.this);
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<CommonResponse> call, Throwable t) {
+                            if (proDialog != null && proDialog.isShowing()) {
+                                proDialog.dismiss();
+                            }
+                            LicenseUtil.showSimpleDialog(RegisterLicenseActivity.this, "初始化数据失败,请重新打开程序", new SweetAlertDialog.OnSweetClickListener() {
+                                @Override
+                                public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                    finish();
+                                }
+                            });
                         }
                     });
-                }
-            });
         }
     }
 

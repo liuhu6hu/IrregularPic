@@ -19,6 +19,7 @@
         tools:replace="android:label,android:icon">
         <activity
             android:name=".ui.Main2Activity"
+            android:theme="@style/AppTheme1"
             android:windowSoftInputMode="adjustResize|stateAlwaysHidden" />
         <activity android:name=".ui.LauncherActivity">
             <intent-filter>

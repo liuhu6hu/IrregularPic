@@ -48,9 +48,8 @@ public class AboutActivity extends AppCompatActivity {
         setContentView(R.layout.activity_about);
         Toolbar toolbarTop = (Toolbar) findViewById(R.id.toolbar);
         TextView mTitle = (TextView) toolbarTop.findViewById(R.id.toolbar_title);
-        toolbarTop.setTitle("");
-
         setSupportActionBar(toolbarTop);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbarTop.setNavigationOnClickListener(new View.OnClickListener() {

@@ -9,7 +9,9 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -77,11 +79,13 @@ public class Main2Activity extends AppCompatActivity {
     private String path;
     private TextView licenseInfo;
     private TextView licenseDate;
+    private ActionBarDrawerToggle actionBarDrawerToggle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         initView();
         if (!LicenseUtil.licenseOk()) {
             LicenseUtil.showSimpleLicenseDialog(this);
@@ -139,7 +143,15 @@ public class Main2Activity extends AppCompatActivity {
         drawLeft = (RelativeLayout) findViewById(R.id.draw_left_layout);
         licenseInfo = (TextView) findViewById(R.id.license_info);
         licenseDate = (TextView) findViewById(R.id.license_date);
+        Toolbar toolbarTop = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbarTop);
+        getSupportActionBar().setHomeButtonEnabled(true); //设置返回键可用
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        actionBarDrawerToggle = new ActionBarDrawerToggle(this, draw, toolbarTop, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        draw.addDrawerListener(actionBarDrawerToggle);
 
+        actionBarDrawerToggle.syncState();//状态
         support = (LinearLayout) findViewById(R.id.support);
         updateApp = (LinearLayout) findViewById(R.id.update_app);
         aboutApp = (LinearLayout) findViewById(R.id.about_app);
