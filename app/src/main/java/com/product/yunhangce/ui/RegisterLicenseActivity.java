@@ -117,6 +117,7 @@ public class RegisterLicenseActivity extends AppCompatActivity {
                         showToast(response.body().getMessage());
                     }
                 } else {
+                    proDialog.dismiss();
                     showToast("访问失败,请检查网络连接");
                 }
             }

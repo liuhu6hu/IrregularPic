@@ -54,7 +54,7 @@ public class LauncherActivity extends AppCompatActivity {
     private DownloadBuilder builder;
     private boolean cancelCheckVersion;
     private MyCustomVersionDialogListener dialog;
-    private boolean isRunning =true;
+    private boolean isRunning = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -137,7 +137,7 @@ public class LauncherActivity extends AppCompatActivity {
                 .postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        if(!isRunning){
+                        if (!isRunning) {
                             return;
                         }
                         if (LicenseUtil.licenseOk()) {
@@ -185,10 +185,10 @@ public class LauncherActivity extends AppCompatActivity {
                     public UIData onRequestVersionSuccess(String result) {
                         Gson gson = new Gson();
                         VersionResponse versionData = gson.fromJson(result, VersionResponse.class);
-                        if (versionData.getData() != null && versionData.getData().getVersionCode() != AppUtils.getAppVersionCode()) {
+                        if (versionData!=null&&versionData.getData() != null && versionData.getData().getVersionCode() != AppUtils.getAppVersionCode()) {
                             return crateUIData(versionData.getData().getApkUrl(), getString(R.string.new_version) + versionData.getData().getVersionName(), versionData.getData().getContext());
                         } else {
-                            if (versionData.getData() == null) {
+                            if (versionData!=null&&versionData.getData() == null) {
                                 Toast.makeText(LauncherActivity.this, versionData.getMessage(), Toast.LENGTH_SHORT).show();
                             }
                             startInitData();
@@ -219,7 +219,7 @@ public class LauncherActivity extends AppCompatActivity {
 //                }
 //            }
 //        });
-        dialog=new MyCustomVersionDialogListener();
+        dialog = new MyCustomVersionDialogListener();
         builder.setCustomVersionDialogListener(dialog);
         builder.setForceRedownload(true);
         builder.excuteMission(this);
@@ -235,7 +235,7 @@ public class LauncherActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-        isRunning=false;
+        isRunning = false;
         LicenseUtil.dismissDialog();
         super.onDestroy();
     }
