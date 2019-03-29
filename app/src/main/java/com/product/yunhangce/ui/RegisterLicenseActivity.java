@@ -68,7 +68,7 @@ public class RegisterLicenseActivity extends AppCompatActivity {
         permissionItems.add(new PermissionItem(Manifest.permission.READ_PHONE_STATE, "手机状态", R.drawable.permission_ic_contacts));
         permissionItems.add(new PermissionItem(Manifest.permission.WRITE_EXTERNAL_STORAGE, "存储空间", R.drawable.permission_ic_storage));
         HiPermission.create(this)
-                .title("尊敬的用户")
+                .title("尊敬的用户11111111")
                 .msg("为了能够正常使用，请开启这些权限吧！")
                 .filterColor(ResourcesCompat.getColor(getResources(), R.color.colorPrimary, getTheme()))//图标的颜色
                 .permissions(permissionItems)
