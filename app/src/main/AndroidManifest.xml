@@ -17,24 +17,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:label,android:icon">
-        <activity
-            android:name=".ui.Main2Activity"
-            android:theme="@style/AppTheme1"
-            android:windowSoftInputMode="adjustResize|stateAlwaysHidden" />
-        <activity android:name=".ui.LauncherActivity">
+        <!--<activity-->
+            <!--android:name=".ui.Main2Activity"-->
+            <!--android:theme="@style/AppTheme1"-->
+            <!--android:windowSoftInputMode="adjustResize|stateAlwaysHidden" />-->
+        <activity android:name=".ui.Main2Activity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".ui.RegisterLicenseActivity"
-            android:theme="@style/AppTheme1" />
-        <activity android:name=".ui.AboutActivity"
-            android:theme="@style/AppTheme1" />
-        <activity android:name=".ui.SupportActivity"
-            android:theme="@style/AppTheme1" />
         <activity android:name=".ui.CropImageActivity"
             android:theme="@style/AppTheme1" />
 

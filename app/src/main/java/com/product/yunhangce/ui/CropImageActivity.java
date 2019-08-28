@@ -1,6 +1,5 @@
 package com.product.yunhangce.ui;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -9,9 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
-
 import com.product.yunhangce.R;
 import com.product.yunhangce.listener.CropImageListener;
 import com.product.yunhangce.util.CropImageUtil;

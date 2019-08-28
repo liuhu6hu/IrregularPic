@@ -5,9 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -22,26 +20,11 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.allenliu.versionchecklib.callback.OnCancelListener;
-import com.allenliu.versionchecklib.v2.AllenVersionChecker;
 import com.allenliu.versionchecklib.v2.builder.DownloadBuilder;
-import com.allenliu.versionchecklib.v2.builder.UIData;
-import com.allenliu.versionchecklib.v2.callback.ForceUpdateListener;
-import com.allenliu.versionchecklib.v2.callback.RequestVersionListener;
-import com.product.yunhangce.MyApplication;
-import com.product.yunhangce.R;
-import com.product.yunhangce.http.RetrofitUtil;
-import com.product.yunhangce.http.VersionResponse;
-import com.product.yunhangce.listener.MyCustomVersionDialogListener;
-import com.product.yunhangce.util.AppUtils;
-import com.product.yunhangce.util.ImgUtils;
-import com.product.yunhangce.util.LicenseConst;
-import com.product.yunhangce.util.LicenseUtil;
-import com.product.yunhangce.util.SpUtils;
-import com.google.gson.Gson;
 import com.luck.picture.lib.PictureSelector;
 import com.luck.picture.lib.config.PictureMimeType;
 import com.luck.picture.lib.entity.LocalMedia;
+import com.product.yunhangce.R;
 import com.shizhefei.view.largeimage.Area;
 import com.shizhefei.view.largeimage.LargeImageView;
 import com.shizhefei.view.largeimage.factory.InputStreamBitmapDecoderFactory;
@@ -54,6 +37,9 @@ import java.util.List;
 import java.util.Locale;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
+
+//import com.product.yunhangce.util.LicenseConst;
+//import com.product.yunhangce.util.LicenseUtil;
 
 public class Main2Activity extends AppCompatActivity {
     LargeImageView largeImageView;
@@ -86,10 +72,10 @@ public class Main2Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        initView();
-        if (!LicenseUtil.licenseOk()) {
-            LicenseUtil.showSimpleLicenseDialog(this);
-        }
+//        initView();
+//        if (!LicenseUtil.licenseOk()) {
+//            LicenseUtil.showSimpleLicenseDialog(this);
+//        }
         largeImageView = findViewById(R.id.imageView);
         try {
             largeImageView.setImage(new InputStreamBitmapDecoderFactory(getAssets().open("bg.png")));
@@ -163,8 +149,6 @@ public class Main2Activity extends AppCompatActivity {
         closeApp.setOnClickListener(listener);
         unRegister.setOnClickListener(listener);
         drawLeft.setOnClickListener(listener);
-        licenseInfo.setText(MyApplication.getCommonDate().getLicenseInfo());
-        licenseDate.setText(MyApplication.getCommonDate().getLicenseExpireInfo());
     }
 
     public void onClick(View v) {
@@ -252,12 +236,12 @@ public class Main2Activity extends AppCompatActivity {
 
     public void cropImage(View view) {
 
-        ImgUtils.saveImageToGallery(this, convertViewToBitmap(largeImageView));
+//        ImgUtils.saveImageToGallery(this, convertViewToBitmap(largeImageView));
         // it for crop ，
-//        Intent intent = new Intent(Main2Activity.this, CropImageActivity.class);
-//        intent.putExtra("path", path);
-//        intent.putExtra("point", largeImageView.getAllPoint());
-//        startActivity(intent);
+        Intent intent = new Intent(Main2Activity.this, CropImageActivity.class);
+        intent.putExtra("path", path);
+        intent.putExtra("point", largeImageView.getAllPoint());
+        startActivity(intent);
     }
 
     public void onClick4(View view) {
@@ -294,121 +278,109 @@ public class Main2Activity extends AppCompatActivity {
         public void onClick(View v) {
             int id = v.getId();
             if (id == R.id.support) {
-                draw.closeDrawers();
-                Intent intent = new Intent(Main2Activity.this, SupportActivity.class);
-                startActivity(intent);
             } else if (id == R.id.about_app) {
-                draw.closeDrawers();
-                Intent intent = new Intent(Main2Activity.this, AboutActivity.class);
-                startActivity(intent);
 //
-//                new SweetAlertDialog(Main2Activity.this)
-//                        .setTitleText("关于")
-//                        .setContentText("云航测授权给xx使用，x、xxx、 xxx、 xx、xx、 xx、xxx、xx、xxx、xxxxxxx、xxx、、等。。。")
-//                        .setConfirmText(getString(R.string.yes))
-//                        .show();
             } else if (id == R.id.close_app) {
-                closeApp();
+//                closeApp();
             } else if (id == R.id.un_register) {
-                unRegister();
+//                unRegister();
             } else if (id == R.id.update_app) {
                 draw.closeDrawers();
-                checkVersion();
+//                checkVersion();
             }
         }
     };
 
-    private void closeApp() {
-       pDialog= LicenseUtil. showCustomerDialog(Main2Activity.this, SweetAlertDialog.WARNING_TYPE)
-                .setTitleText(getString(R.string.are_you_sure))
-                .setContentText(getString(R.string.exist_app))
-                .setConfirmText(getString(R.string.yes))
-                .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                    @Override
-                    public void onClick(SweetAlertDialog sweetAlertDialog) {
-                        Main2Activity.this.finish();
-                    }
-                })
-                .setCancelText(getString(R.string.no));
-        pDialog  .show();
-    }
+//    private void closeApp() {
+//       pDialog= LicenseUtil. showCustomerDialog(Main2Activity.this, SweetAlertDialog.WARNING_TYPE)
+//                .setTitleText(getString(R.string.are_you_sure))
+//                .setContentText(getString(R.string.exist_app))
+//                .setConfirmText(getString(R.string.yes))
+//                .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+//                    @Override
+//                    public void onClick(SweetAlertDialog sweetAlertDialog) {
+//                        Main2Activity.this.finish();
+//                    }
+//                })
+//                .setCancelText(getString(R.string.no));
+//        pDialog  .show();
+//    }
 
-    private void unRegister() {
-        pDialog =  LicenseUtil. showCustomerDialog(Main2Activity.this, SweetAlertDialog.WARNING_TYPE)
-                .setTitleText(getString(R.string.are_you_sure))
-                .setContentText(getString(R.string.unregister_exist))
-                .setConfirmText(getString(R.string.yes))
-                .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                    @Override
-                    public void onClick(SweetAlertDialog sweetAlertDialog) {
-                        SpUtils.getInstance().put(LicenseConst.KEY_DEVICE, "");
-                        SpUtils.getInstance().put(LicenseConst.KEY_LICENSE, "");
-                        Main2Activity.this.finish();
-                    }
-                })
-                .setCancelText(getString(R.string.no));
-        pDialog.show();
-    }
+//    private void unRegister() {
+//        pDialog =  LicenseUtil. showCustomerDialog(Main2Activity.this, SweetAlertDialog.WARNING_TYPE)
+//                .setTitleText(getString(R.string.are_you_sure))
+//                .setContentText(getString(R.string.unregister_exist))
+//                .setConfirmText(getString(R.string.yes))
+//                .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+//                    @Override
+//                    public void onClick(SweetAlertDialog sweetAlertDialog) {
+//                        SpUtils.getInstance().put(LicenseConst.KEY_DEVICE, "");
+//                        SpUtils.getInstance().put(LicenseConst.KEY_LICENSE, "");
+//                        Main2Activity.this.finish();
+//                    }
+//                })
+//                .setCancelText(getString(R.string.no));
+//        pDialog.show();
+//    }
 
-    private void checkVersion() {
-        pDialog =  LicenseUtil.showCustomerDialog(this, SweetAlertDialog.PROGRESS_TYPE);
-        pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
-        pDialog.setTitleText(getString(R.string.version_loading_version));
-        pDialog.setCancelable(false);
-        pDialog.show();
-        builder = AllenVersionChecker
-                .getInstance()
-                .requestVersion()
-                .setRequestUrl(RetrofitUtil.APP_VERSION)
-                .request(new RequestVersionListener() {
-                    @Nullable
-                    @Override
-                    public UIData onRequestVersionSuccess(String result) {
-                        Gson gson = new Gson();
-                        pDialog.dismiss();
-                        VersionResponse versionData = gson.fromJson(result, VersionResponse.class);
-                        if (versionData.getData() != null && versionData.getData().getVersionCode() != AppUtils.getAppVersionCode()) {
-                            return crateUIData(versionData.getData().getApkUrl(), getString(R.string.new_version) + versionData.getData().getVersionName(), versionData.getData().getContext());
-                        } else {
-                            if (versionData.getData() == null) {
-                                Toast.makeText(Main2Activity.this, versionData.getMessage(), Toast.LENGTH_SHORT).show();
-                            } else {
-                                Toast.makeText(Main2Activity.this, getString(R.string.last_version_hint), Toast.LENGTH_SHORT).show();
-                            }
-                            return null;
-                        }
-                    }
-
-                    @Override
-                    public void onRequestVersionFailure(String message) {
-                        pDialog.dismiss();
-                        Toast.makeText(Main2Activity.this, R.string.version_loading_fail, Toast.LENGTH_SHORT).show();
-                    }
-                });
-        builder.setForceUpdateListener(new ForceUpdateListener() {
-            @Override
-            public void onShouldForceUpdate() {
-                Toast.makeText(Main2Activity.this, "请更新到最新版本", Toast.LENGTH_SHORT).show();
-            }
-        });
-        builder.setOnCancelListener(new OnCancelListener() {
-            @Override
-            public void onCancel() {
-            }
-        });
-        builder.setCustomVersionDialogListener(new MyCustomVersionDialogListener());
-        builder.setForceRedownload(true);
-        builder.excuteMission(this);
-    }
-
-
-    private UIData crateUIData(String apkUrl, String title, String context) {
-        UIData uiData = UIData.create();
-        uiData.setTitle(title);
-        uiData.setDownloadUrl(apkUrl);
-        uiData.setContent(context);
-        return uiData;
-    }
+//    private void checkVersion() {
+//        pDialog =  LicenseUtil.showCustomerDialog(this, SweetAlertDialog.PROGRESS_TYPE);
+//        pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+//        pDialog.setTitleText(getString(R.string.version_loading_version));
+//        pDialog.setCancelable(false);
+//        pDialog.show();
+//        builder = AllenVersionChecker
+//                .getInstance()
+//                .requestVersion()
+//                .setRequestUrl(RetrofitUtil.APP_VERSION)
+//                .request(new RequestVersionListener() {
+//                    @Override
+//                    public UIData onRequestVersionSuccess(String result) {
+//                        Gson gson = new Gson();
+//                        pDialog.dismiss();
+//                        VersionResponse versionData = gson.fromJson(result, VersionResponse.class);
+//                        if (versionData.getData() != null && versionData.getData().getVersionCode() != AppUtils.getAppVersionCode()) {
+//                            return crateUIData(versionData.getData().getApkUrl(), getString(R.string.new_version) + versionData.getData().getVersionName(), versionData.getData().getContext());
+//                        } else {
+//                            if (versionData.getData() == null) {
+//                                Toast.makeText(Main2Activity.this, versionData.getMessage(), Toast.LENGTH_SHORT).show();
+//                            } else {
+//                                Toast.makeText(Main2Activity.this, getString(R.string.last_version_hint), Toast.LENGTH_SHORT).show();
+//                            }
+//                            return null;
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onRequestVersionFailure(String message) {
+//                        pDialog.dismiss();
+//                        Toast.makeText(Main2Activity.this, R.string.version_loading_fail, Toast.LENGTH_SHORT).show();
+//                    }
+//                });
+//        builder.setForceUpdateListener(new ForceUpdateListener() {
+//            @Override
+//            public void onShouldForceUpdate() {
+//                Toast.makeText(Main2Activity.this, "请更新到最新版本", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//        builder.setOnCancelListener(new OnCancelListener() {
+//            @Override
+//            public void onCancel() {
+//            }
+//        });
+//        builder.setCustomVersionDialogListener(new MyCustomVersionDialogListener());
+//        builder.setForceRedownload(true);
+//        builder.excuteMission(this);
+//    }
+//
+//
+//    private UIData crateUIData(String apkUrl, String title, String context) {
+//        UIData uiData = UIData.create();
+//        uiData.setTitle(title);
+//        uiData.setDownloadUrl(apkUrl);
+//        uiData.setContent(context);
+//        return uiData;
+//    }
 
     public Bitmap convertViewToBitmap(View view) {
 
@@ -421,7 +393,7 @@ public class Main2Activity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-        LicenseUtil.dismissDialog();
+//        LicenseUtil.dismissDialog();
         super.onDestroy();
     }
 }
